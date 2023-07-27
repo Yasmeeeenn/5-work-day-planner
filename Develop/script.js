@@ -45,26 +45,30 @@ $('#currentDay').text(today.format('MMM D, YYYY'));
     var currentTime = newDate = dayjs().hour(); //gets current time
 
     $(".time-block").each(function() {
-      var timeBlock = pareInt($(this).attr("id"));
+      var timeBlock = pareInt($(this).attr("id").split("hour")[1]);
 
       if (currentTime === timeBlock) {
         $(this).addClass("present");
-        $(this).removeClass("past future");
+        $(this).removeClass("past");
+        $(this).removeClass("future");
       }
 
       else if (currentTime < timeBlock) {
-        $(this).addClass ("future");
-        $(this).removeClass ("past present");
+        $(this).addClass ("past");
+        $(this).removeClass ("present");
+        $(this).removeClass ("future");
       }
 
       else {
-        $(this).addClass("past");
-        $(this).removeClass("present future");
+        $(this).addClass("future");
+        $(this).removeClass("present");
+        $(this).removeClass("past");
       }
     })
   
     
   };
+  updatePPF();
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
