@@ -1,7 +1,7 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(document).ready(function () {
+
 
   // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
@@ -42,10 +42,10 @@ $('#currentDay').text(today.format('MMM D, YYYY'));
   // current hour in 24-hour time?
   function updatePPF() {
 
-    var currentTime = newDate = dayjs().hour(); //gets current time
+    var currentTime = dayjs().hour(); //gets current time
 
     $(".time-block").each(function() {
-      var timeBlock = pareInt($(this).attr("id").split("hour")[1]);
+      var timeBlock = parseInt($(this).attr("id").split("hour")[1]);
 
       if (currentTime === timeBlock) {
         $(this).addClass("present");
@@ -53,7 +53,7 @@ $('#currentDay').text(today.format('MMM D, YYYY'));
         $(this).removeClass("future");
       }
 
-      else if (currentTime < timeBlock) {
+      else if (currentTime > timeBlock) {
         $(this).addClass ("past");
         $(this).removeClass ("present");
         $(this).removeClass ("future");
@@ -64,7 +64,7 @@ $('#currentDay').text(today.format('MMM D, YYYY'));
         $(this).removeClass("present");
         $(this).removeClass("past");
       }
-    })
+    });
   
     
   };
@@ -77,5 +77,5 @@ $('#currentDay').text(today.format('MMM D, YYYY'));
   
 
 
-});
+
 
